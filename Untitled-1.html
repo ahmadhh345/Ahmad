@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول</title>
+    <style>
+        /* نفس التنسيق كما في صفحة إنشاء الحساب */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .error-message {
+            color: red;
+            text-align: center;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>تسجيل الدخول</h2>
+        <form id="loginForm">
+            <div>
+                <input type="text" class="input-field" id="loginUsername" placeholder="اسم المستخدم" required>
+            </div>
+            <div>
+                <input type="password" class="input-field" id="loginPassword" placeholder="كلمة المرور" required>
+            </div>
+            <div>
+                <button type="submit" class="submit-btn">دخول</button>
+            </div>
+            <div class="error-message" id="loginError">اسم المستخدم أو كلمة المرور غير صحيحة.</div>
+        </form>
+        <p>ليس لديك حساب؟ <a href="signup.html">إنشاء حساب جديد</a></p>
+    </div>
+
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        const loginUsername = document.getElementById('loginUsername');
+        const loginPassword = document.getElementById('loginPassword');            const loginError = document.getElementById('loginError');
+
+loginForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const username = loginUsername.value;
+    const password = loginPassword.value;
+
+    const storedUsername = localStorage.getItem('username');
+    const storedPassword = localStorage.getItem('password');
+
+    if (username === storedUsername && password === storedPassword) {
+        alert("تم تسجيل الدخول بنجاح!");
+        // إعادة التوجيه إلى الصفحة الرئيسية أو صفحة أخرى
+        window.location.href = "welcome.html"; // أو إلى أي صفحة أخرى
+    } else {
+        loginError.style.display = 'block';
+    }
+});
+</script>
+
+</body>
+</html>

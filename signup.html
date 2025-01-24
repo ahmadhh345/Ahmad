@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إنشاء حساب</title>
+    <style>
+        /* نفس تنسيق النموذج كما في السابق */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 10px
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .error-message {
+            color: red;
+            text-align: center;
+            display: none;
+        }
+
+        .success-message {
+            color: green;
+            text-align: center;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>إنشاء حساب</h2>
+        <form id="signupForm">
+            <div>
+                <input type="text" class="input-field" id="signupUsername" placeholder="اسم المستخدم" required>
+            </div>
+            <div>
+                <input type="password" class="input-field" id="signupPassword" placeholder="كلمة المرور" required>
+            </div>
+            <div>
+                <button type="submit" class="submit-btn">إنشاء حساب</button>
+            </div><div class="error-message" id="signupError">يرجى ملء جميع الحقول بشكل صحيح.</div>
+            <div class="success-message" id="signupSuccess">تم إنشاء الحساب بنجاح!</div>
+        </form>
+        <p>لديك حساب؟ <a href="Untitled-1.html">تسجيل الدخول هنا</a></p>
+    </div>
+
+    <script>
+        const signupForm = document.getElementById('signupForm');
+        const signupUsername = document.getElementById('signupUsername');
+        const signupPassword = document.getElementById('signupPassword');
+        const signupError = document.getElementById('signupError');
+        const signupSuccess = document.getElementById('signupSuccess');
+
+        signupForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const username = signupUsername.value;
+            const password = signupPassword.value;
+
+            if (username && password) {
+                localStorage.setItem('username', username);
+                localStorage.setItem('password', password);
+                signupSuccess.style.display = 'block';
+                signupError.style.display = 'none';
+                setTimeout(() => {
+                    window.location.href = 'Untitled-1.html'; // إعادة التوجيه إلى صفحة تسجيل الدخول
+                }, 2000);
+            } else {signupError.style.display = 'block';
+            }
+        });
+    </script>
+
+</body>
+</html>
